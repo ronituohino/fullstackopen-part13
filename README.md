@@ -10,4 +10,6 @@ values:
 
 ```
 DATABASE_URL=postgres://<user>:<pass>@<host>:<port>/<database>
+
+SECRET=<token signature key>
 ```
