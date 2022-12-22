@@ -11,8 +11,21 @@ Blog.init(
     url: { type: DataTypes.TEXT, allowNull: false },
     title: { type: DataTypes.TEXT, allowNull: false },
     likes: { type: DataTypes.INTEGER, defaultValue: 0 },
+    year: {
+      type: DataTypes.INTEGER,
+      validate: {
+        min: {
+          args: 1991,
+          msg: "Year is lower than 1991",
+        },
+        max: {
+          args: 2022,
+          msg: "Year is higher than 2022",
+        },
+      },
+    },
   },
-  { sequelize, underscored: true, timestamps: false, modelName: "blog" }
+  { sequelize, underscored: true, modelName: "blog" }
 );
 
 module.exports = Blog;
