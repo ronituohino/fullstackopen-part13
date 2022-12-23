@@ -14,7 +14,7 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
-  const users = await User.findOne({
+  const user = await User.findOne({
     with: { id: req.params.id },
     include: [
       {
@@ -26,10 +26,13 @@ router.get("/:id", async (req, res) => {
         attributes: {
           exclude: ["createdAt", "updatedAt", "userId", "likes"],
         },
+        through: {
+          attributes: ["id", "read"],
+        },
       },
     ],
   });
-  res.json(users);
+  res.json(user);
 });
 
 router.post("/", async (req, res) => {
