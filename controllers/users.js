@@ -14,6 +14,9 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
+  const readFilter = req.query.read;
+  const readFilterValid = readFilter === "true" || readFilter === "false";
+
   const user = await User.findOne({
     with: { id: req.params.id },
     include: [
@@ -28,6 +31,11 @@ router.get("/:id", async (req, res) => {
         },
         through: {
           attributes: ["id", "read"],
+          where: readFilterValid
+            ? {
+                read: readFilter,
+              }
+            : {},
         },
       },
     ],
