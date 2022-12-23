@@ -8,6 +8,18 @@ router.get("/", async (req, res) => {
       {
         model: Blog,
       },
+    ],
+  });
+  res.json(users);
+});
+
+router.get("/:id", async (req, res) => {
+  const users = await User.findOne({
+    with: { id: req.params.id },
+    include: [
+      {
+        model: Blog,
+      },
       {
         model: Blog,
         as: "reading",
