@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon index.js",
-    "mingation:down": "node util/rollback.js"
+    "migration:down": "node util/rollback.js"
   },
   "repository": {
     "type": "git",
